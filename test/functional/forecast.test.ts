@@ -3,6 +3,6 @@ describe('Beach forecast functional tests', () => {
     const { body, status } = await global.testRequest.get('/forecast');
 
     expect(status).toBe(200);
-    expect(body).toEqual([{}])
-  })
-})
+    expect(body).toEqual([{}]);
+  });
+});
