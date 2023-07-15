@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { DatePipe } from '@angular/common';
 import { ApiBaseService } from '../../services/api-base.service';
 
 import { GetForecastsResponseModel } from '../../models/api-responses.model';
-import { DatePipe } from '@angular/common';
 
 export interface PeriodicElement {
   name: string;
@@ -13,16 +13,14 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-
 @Component({
   selector: 'app-forecasts-table',
   templateUrl: './forecasts-table.component.html',
-  styleUrls: ['./forecasts-table.component.scss']
+  styleUrls: ['./forecasts-table.component.scss'],
 })
 export class ForecastsTableComponent implements OnInit {
-
   displayedColumns: string[] = [
-    'name', 'rating', 'swellDirection', 'swellHeight', 'waveDirection', 'time'
+    'name', 'rating', 'swellDirection', 'swellHeight', 'waveDirection', 'time',
   ];
 
   dataSource = new MatTableDataSource<GetForecastsResponseModel>();
@@ -31,7 +29,7 @@ export class ForecastsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiBase.getForecasts()
-      .subscribe(data => {
+      .subscribe((data) => {
         this.dataSource.data = data;
       });
   }
@@ -39,5 +37,4 @@ export class ForecastsTableComponent implements OnInit {
   getFormattedDate(date: string) {
     return new DatePipe('en-US').transform(date, 'dd/MM/YYYY | hh:mm:ss');
   }
-
 }

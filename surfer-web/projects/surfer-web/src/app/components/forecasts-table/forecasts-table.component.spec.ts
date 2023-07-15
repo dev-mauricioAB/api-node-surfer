@@ -8,7 +8,7 @@ describe('ForecastsTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ForecastsTableComponent]
+      declarations: [ForecastsTableComponent],
     });
     fixture = TestBed.createComponent(ForecastsTableComponent);
     component = fixture.componentInstance;

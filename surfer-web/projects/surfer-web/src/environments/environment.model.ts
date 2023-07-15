@@ -3,4 +3,4 @@ export interface EnvironmentModel {
   useApiServiceMock: boolean,
 
   apiBaseUrl: string,
-};
+}

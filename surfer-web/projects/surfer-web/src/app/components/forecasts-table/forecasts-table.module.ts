@@ -9,15 +9,15 @@ import { ForecastsTableComponent } from './forecasts-table.component';
 
 @NgModule({
   declarations: [
-    ForecastsTableComponent
+    ForecastsTableComponent,
   ],
   imports: [
     CommonModule,
-    VendorsModule
+    VendorsModule,
   ],
   providers: [
-    ApiBaseServiceProvider
+    ApiBaseServiceProvider,
   ],
-  exports: [ForecastsTableComponent]
+  exports: [ForecastsTableComponent],
 })
 export class ForecastsTableModule { }

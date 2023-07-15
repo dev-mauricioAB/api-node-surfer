@@ -1,4 +1,4 @@
-import { ForecastModel } from "./forecast.model";
+import { ForecastModel } from './forecast.model';
 
 export interface GetForecastsResponseModel {
   forecast: ForecastModel[],

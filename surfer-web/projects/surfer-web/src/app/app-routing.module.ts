@@ -5,16 +5,16 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'home',
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(({ HomeModule }) => HomeModule)
-  }
+    loadChildren: () => import('./pages/home/home.module').then(({ HomeModule }) => HomeModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

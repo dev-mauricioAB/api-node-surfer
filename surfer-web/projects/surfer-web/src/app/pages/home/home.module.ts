@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { VendorsModule } from 'projects/vendors/src/public-api';
+import { HomeComponent } from './home.component';
 import { ForecastsTableModule } from '../../components/forecasts-table/forecasts-table.module';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -17,10 +17,10 @@ import { ForecastsTableModule } from '../../components/forecasts-table/forecasts
     RouterModule.forChild([
       {
         path: '',
-        component: HomeComponent
-      }
-    ])
+        component: HomeComponent,
+      },
+    ]),
   ],
-  exports: [HomeComponent]
+  exports: [HomeComponent],
 })
 export class HomeModule { }

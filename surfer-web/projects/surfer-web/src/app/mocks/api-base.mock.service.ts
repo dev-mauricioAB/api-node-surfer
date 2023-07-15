@@ -7,8 +7,8 @@ import { delay, Observable, of } from 'rxjs';
 export class ApiBaseMockService {
   private mockConfigurations: any[] = [];
 
-
   getForecasts(): Observable<any[]> {
-    return of(this.mockConfigurations);
+    return of(this.mockConfigurations)
+      .pipe(delay(1000));
   }
 }
