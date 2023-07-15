@@ -6,8 +6,8 @@
       "files": ["*.ts"],
       "parserOptions": {
         "project": [
-          "projects/growth-rate/tsconfig.app.json",
-          "projects/growth-rate/tsconfig.spec.json"
+          "projects/surfer-web/tsconfig.app.json",
+          "projects/surfer-web/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       }
