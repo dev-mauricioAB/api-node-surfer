@@ -1,0 +1,36 @@
+<div *ngIf="dataSource">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.forecast[0].name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rating">
+      <th mat-header-cell *matHeaderCellDef> Rating </th>
+      <td mat-cell *matCellDef="let element"> {{element.forecast[0].rating}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="swellDirection">
+      <th mat-header-cell *matHeaderCellDef> swellDirection </th>
+      <td mat-cell *matCellDef="let element"> {{element.forecast[0].swellDirection}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="swellHeight">
+      <th mat-header-cell *matHeaderCellDef> swellHeight </th>
+      <td mat-cell *matCellDef="let element"> {{element.forecast[0].swellHeight}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="waveDirection">
+      <th mat-header-cell *matHeaderCellDef> waveDirection </th>
+      <td mat-cell *matCellDef="let element"> {{element.forecast[0].waveDirection}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef> time </th>
+      <td mat-cell *matCellDef="let element"> {{getFormattedDate(element.forecast[0].time)}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
