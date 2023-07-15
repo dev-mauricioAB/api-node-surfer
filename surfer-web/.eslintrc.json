@@ -1,17 +1,18 @@
 {
   "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json"],
-        "createDefaultProgram": true
-      },
+      "files": [
+        "*.ts"
+      ],
       "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-base",
-        "airbnb-typescript/base"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -29,18 +30,17 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ],
-        "import/prefer-default-export": "off",
-        "linebreak-style": 0,
-        "no-console": ["error", { "allow": ["warn", "error"] }],
-        "max-len": ["error", { "code": 120 }],
-        "class-methods-use-this": 0,
-        "curly": 0
+        ]
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
       "rules": {}
     }
   ]

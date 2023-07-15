@@ -1,22 +1,36 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": ["!**/*"],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
-      "parserOptions": {
-        "project": [
-          "projects/vendors/tsconfig.lib.json",
-          "projects/vendors/tsconfig.spec.json"
-        ],
-        "createDefaultProgram": true
-      },
+      "files": [
+        "*.ts"
+      ],
       "rules": {
-        "import/no-extraneous-dependencies": 0
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "lib",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "lib",
+            "style": "kebab-case"
+          }
+        ]
       }
     },
     {
-      "files": ["*.html"],
+      "files": [
+        "*.html"
+      ],
       "rules": {}
     }
   ]
