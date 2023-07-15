@@ -45,7 +45,6 @@ export class ForecastController extends BaseController {
     res: Response
   ): Promise<void> {
     try {
-      debugger;
       const {
         orderBy,
         orderField,
@@ -54,7 +53,6 @@ export class ForecastController extends BaseController {
         orderField?: keyof BeachForecast;
       } = req.query;
 
-      debugger
       if (!req.context.userId) {
         this.sendErrorResponse(res, {
           code: 500,

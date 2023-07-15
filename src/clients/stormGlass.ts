@@ -80,7 +80,7 @@ export class StormGlass {
   constructor(
     protected request = new HTTPUtil.Request(),
     protected cacheUtil = CacheUtil
-  ) {}
+  ) { }
 
   public async fetchPoints(lat: number, lng: number): Promise<ForecastPoint[]> {
     const cachedForecastPoints = this.getForecastPointsFromCache(
@@ -102,18 +102,22 @@ export class StormGlass {
   ): Promise<ForecastPoint[]> {
     const endTimestamp = TimeUtil.getUnixTimeForAFutureDay(1);
     try {
-      const response = await this.request.get<StormGlassForecastResponse>(
-        `${stormglassResourceConfig.get(
-          'apiUrl'
-        )}/weather/point?lat=${lat}&lng=${lng}&params=${
-          this.stormGlassAPIParams
-        }&source=${this.stormGlassAPISource}&end=${endTimestamp}`,
-        {
-          headers: {
-            Authorization: stormglassResourceConfig.get('apiToken'),
-          },
-        }
-      );
+      const url = `${stormglassResourceConfig.get(
+        'apiUrl'
+      )}/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassAPIParams
+        }&source=${this.stormGlassAPISource}&end=${endTimestamp}`;
+
+      const params: HTTPUtil.RequestConfig = {
+        headers: {
+          Authorization: stormglassResourceConfig.get('apiToken'),
+        },
+      };
+
+      const response =
+        await this.request.get<StormGlassForecastResponse>(
+          url,
+          params
+        );
       return this.normalizeResponse(response.data);
     } catch (err) {
       //@Updated 2022 to support Error as unknown
