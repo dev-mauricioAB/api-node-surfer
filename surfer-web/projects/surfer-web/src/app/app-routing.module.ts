@@ -5,12 +5,16 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'beach-list',
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(({ HomeModule }) => HomeModule),
+    path: 'beach-list',
+    loadChildren: () => import('./pages/beach-list/beach-list.module').then(({ BeachListModule }) => BeachListModule),
   },
+  {
+    path: 'beach-form',
+    loadChildren: () => import('./pages/beach-form/beach-form.module').then(({ BeachFormModule }) => BeachFormModule),
+  }
 ];
 
 @NgModule({
