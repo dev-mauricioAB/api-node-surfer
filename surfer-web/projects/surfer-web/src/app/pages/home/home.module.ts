@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { VendorsModule } from 'projects/vendors/src/public-api';
 
-import { HomeComponent } from './home.component';
+import { AuthService } from '../../services/auth.service';
+import { UtilsService } from '../../services/utils.service';
+import { AuthGuard } from '../../guards/auth.guard';
 
 import { AppRoutingModule } from '../../app-routing.module';
+
+import { HomeComponent } from './home.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,7 @@ import { AppRoutingModule } from '../../app-routing.module';
     VendorsModule,
     AppRoutingModule,
   ],
+  providers: [AuthGuard, AuthService, UtilsService],
   exports: [HomeComponent],
 })
 export class HomeModule { }

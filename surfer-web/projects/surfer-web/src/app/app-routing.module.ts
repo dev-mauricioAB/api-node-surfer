@@ -1,19 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'beach-list',
+    redirectTo: 'app',
   },
   {
-    path: 'beach-list',
-    loadChildren: () => import('./pages/beach-list/beach-list.module').then(({ BeachListModule }) => BeachListModule),
+    path: 'login',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/login/login.module').then(({ LoginModule }) => LoginModule),
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('./pages/register/register.module').then(({ RegisterModule }) => RegisterModule),
+      }
+    ]
   },
   {
-    path: 'beach-form',
-    loadChildren: () => import('./pages/beach-form/beach-form.module').then(({ BeachFormModule }) => BeachFormModule),
+    path: 'app',
+    loadChildren: () => import('./components/navigator/navigator.module').then(({ NavigatorModule }) => NavigatorModule),
+    canActivate: [AuthGuard]
   }
 ];
 

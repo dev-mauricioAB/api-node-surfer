@@ -15,7 +15,13 @@ export class UsersController extends BaseController {
   public async create(req: Request, res: Response): Promise<void> {
     try {
       const newUser = await this.userRepository.create(req.body);
-      res.status(201).send(newUser);
+      const userToRes = {
+        name: newUser.name,
+        email: newUser.email,
+        id: newUser.id,
+      }
+
+      res.status(201).send(userToRes);
     } catch (error) {
       this.sendCreateUpdateErrorResponse(res, error);
     }
@@ -24,6 +30,7 @@ export class UsersController extends BaseController {
   @Post('authenticate')
   public async authenticate(req: Request, res: Response): Promise<Response> {
     const user = await this.userRepository.findOneByEmail(req.body.email);
+
     if (!user) {
       return this.sendErrorResponse(res, {
         code: 401,
@@ -41,7 +48,14 @@ export class UsersController extends BaseController {
     }
     const token = AuthService.generateToken(user.id);
 
-    return res.send({ ...user, ...{ token } });
+    const userInfosToSend = {
+      name: user.name,
+      email: user.email,
+      id: user.id,
+      token
+    }
+
+    return res.send({ ...userInfosToSend, ...{ token } });
   }
 
   @Get('me')

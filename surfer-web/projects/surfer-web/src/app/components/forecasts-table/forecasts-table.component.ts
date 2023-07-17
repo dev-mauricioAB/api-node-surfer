@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { ApiBaseService } from '../../services/api-base.service';
 
 import { GetForecastsResponseModel } from '../../models/api-responses.model';
+import { AuthService } from '../../services/auth.service';
 
 export interface PeriodicElement {
   name: string;
@@ -25,10 +26,17 @@ export class ForecastsTableComponent implements OnInit {
 
   dataSource = new MatTableDataSource<GetForecastsResponseModel>();
 
-  constructor(private apiBase: ApiBaseService) { }
+  token!: string;
+
+  constructor(
+    private apiBase: ApiBaseService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
-    this.apiBase.getForecasts()
+    this.token = this.authService.getToken();
+
+    this.apiBase.getForecasts(this.token)
       .subscribe((data) => {
         this.dataSource.data = data;
       });
