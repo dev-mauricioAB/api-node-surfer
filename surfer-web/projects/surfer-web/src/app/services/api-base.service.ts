@@ -20,11 +20,11 @@ export class ApiBaseService {
     this.apiBaseUrl = this.environment.getEnvironment().apiBaseUrl;
   }
 
-  getForecasts(): Observable<GetForecastsResponseModel[]> {
+  getForecasts(token: string): Observable<GetForecastsResponseModel[]> {
     return this.http.get<GetForecastsResponseModel[]>(`${this.apiBaseUrl}/forecast`, {
       headers: {
         // eslint-disable-next-line max-len
-        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGIyZTdiZDM5YmU2MWVjMGVhNjhiNzgiLCJpYXQiOjE2ODk0NDc1NjYsImV4cCI6MTY4OTQ2NzU2Nn0.ezKLubt7Lc_DO5-8UH6KnbIFjYuUJaJsZRYQQ-Eb2gE',
+        'x-access-token': `${token}`,
       },
     });
   }
