@@ -35,8 +35,8 @@ export class LoginComponent {
     if (email && password)
       this.authService.login(email, password)
         .subscribe(() => {
+          this.router.navigate(['/app']);
           this.loginForm.reset();
-          this.router.navigate(['/']);
         });
   }
 }
