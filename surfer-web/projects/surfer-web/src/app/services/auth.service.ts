@@ -54,8 +54,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if (!this.checkIfTokenExist())
-      return false;
+    if (this.checkIfTokenExist()) {
+      this.token = this.getToken();
+      return this.isJWTTokenValid(this.token);
+    }
 
     if (!this.token)
       this.token = this.getToken();
@@ -65,7 +67,7 @@ export class AuthService {
   }
 
   checkIfTokenExist(): boolean {
-    return this.cookieService.check('token');
+    return this.cookieService.check('AuthToken');
   }
 
   isJWTTokenValid(token: string): boolean {
