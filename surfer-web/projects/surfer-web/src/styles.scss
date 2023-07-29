@@ -48,3 +48,18 @@ body {
 .mat-mdc-card {
   background-color: #f7f7f7 !important;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgb(138, 156, 255);
+}

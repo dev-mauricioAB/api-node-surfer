@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { BeachFormComponent } from './beach-form.component';
+import { VendorsModule } from 'projects/vendors/src/public-api';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { BeachFormComponent } from './beach-form.component';
   ],
   imports: [
     CommonModule,
+    VendorsModule,
     RouterModule.forChild([
       {
         path: '',

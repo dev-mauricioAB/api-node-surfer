@@ -1,9 +1,9 @@
 <mat-toolbar color="primary" class="example-toolbar">
-  <button mat-icon-button (click)="isExpanded = !isExpanded"><mat-icon>menu</mat-icon></button>
+  <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
   <h1 class="example-app-name">Surfer WEB</h1>
 </mat-toolbar>
-<mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()">
     <mat-nav-list>
       <mat-list-item [routerLink]="['/app/beach-list']">
@@ -20,17 +20,9 @@
     </mat-nav-list>
     <mat-nav-list>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <section class="main-container">
-      <router-outlet></router-outlet>
-    </section>
-  </div>
-
-
-</mat-sidenav-container>
-
-<div class="footer">
-  <h3>Surf is cool.</h3>
-</div>
+  <section class="main-container">
+    <router-outlet></router-outlet>
+  </section>
+</mat-drawer-container>

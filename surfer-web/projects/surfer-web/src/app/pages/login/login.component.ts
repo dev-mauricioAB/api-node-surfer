@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroupModel } from '../../models/form-group.model';
 import { LoginControlsModels } from '../../models/login-form-controls.model';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    public router: Router,
+    private router: Router,
+    private utils: UtilsService
   ) {
     this.loginForm = this.formBuilder.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,9 +37,20 @@ export class LoginComponent {
 
     if (email && password)
       this.authService.login(email, password)
-        .subscribe(() => {
-          this.router.navigate(['/app']);
-          this.loginForm.reset();
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/app']);
+            this.loginForm.reset();
+          },
+          error: (error: HttpErrorResponse) => {
+            if (error.status === 401)
+              this.utils.openSnackBar({
+                message: 'Invalid username or password',
+              })
+            this.utils.openSnackBar({
+              message: 'Error in login',
+            })
+          }
         });
   }
 }

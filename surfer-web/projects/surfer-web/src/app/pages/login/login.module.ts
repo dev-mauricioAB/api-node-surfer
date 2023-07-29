@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { VendorsModule } from 'projects/vendors/src/public-api';
+
+import { UtilsService } from '../../services/utils.service';
 
 import { LoginComponent } from './login.component';
-import { VendorsModule } from 'projects/vendors/src/public-api';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         component: LoginComponent
       },
     ])
+  ],
+  providers: [
+    UtilsService
   ],
   exports: [
     LoginComponent
